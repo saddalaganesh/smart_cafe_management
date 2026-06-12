@@ -129,7 +129,4 @@ Through this project I gained experience in:
 👨‍💻 Author
 
 Ganesh saddala
-
-Computer Science Engineering (Data Science)
-
 GitHub: https://github.com/saddalaganesh
