@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>All Orders</h1>
+
+{% for order in orders %}
+
+<div class="order-card">
+
+    <h3>Order #{{ order.id }}</h3>
+
+    <p>
+        <strong>Items:</strong>
+        {{ order.items }}
+    </p>
+
+    <p>
+        <strong>Total Amount:</strong>
+        ₹{{ order.total_amount }}
+    </p>
+
+    <p>
+        <strong>Date & time:</strong><strong>
+            {{ order.order_date.strftime('%d-%m-%y %I:%M %p') }}
+        </strong></strong>
+    </p>
+    <p>
+    <strong>Status:</strong>
+
+    {% if order.status == "Preparing" %}
+        🔵 Preparing
+
+    {% elif order.status == "Completed" %}
+        🟢 Completed
+
+    {% else %}
+        🟡 Pending
+    {% endif %}
+</p>
+
+    {%if session.get(("role")) == "admin" %}
+    <p>
+        <strong>Customer:</strong>
+        {{ order.username }}
+    </p>
+    {% endif %}
+    {% if session.get("role") == "admin" %}
+
+<a href="/update-status/{{ order.id }}/Preparing">
+    🔵 Preparing
+</a>
+
+<a href="/update-status/{{ order.id }}/Completed">
+    🟢 Completed
+</a>
+
+{% endif %}
+</div>
+
+{% endfor %}
+
+</body>
+</html>

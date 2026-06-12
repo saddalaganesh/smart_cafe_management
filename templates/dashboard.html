@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <h1>📊 Admin Dashboard</h1>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <h3>📦 Orders</h3>
+            <h2>{{ total_orders }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>💰 Revenue</h3>
+            <h2>₹{{ total_revenue }}</h2>
+        </div>
+        <div class="stat-card">
+    <h3>🍰 Items</h3>
+    <h2>{{ total_items }}</h2>
+</div>
+
+<div class="stat-card">
+    <h3>👥 Customers</h3>
+    <h2>{{ total_customers }}</h2>
+</div>
+
+    </div>
+
+    <div class="order-section">
+        <h2>📋 Order History</h2>
+
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Amount</th>
+            </tr>
+
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>₹{{ order.total_amount }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

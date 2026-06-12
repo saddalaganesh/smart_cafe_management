@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Cafe</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">☕ Smart Cafe</div>
+
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="/orders">Orders</a></li>
+            {% if session.get("user") %}
+                <li><span
+                class="welcome-text">welcome,
+            <strong>{{ session["user"] }}</strong></span></li>
+
+                <li><a href="/logout">Logout</a><li>
+            {% else %}
+                 <li><a href="/login">login</a></li>
+                 <li><a href="/register">Register</a></li>
+            {% endif %}
+            <li><a href="/cart">Cart</a></li>
+            {% if session.get("role") == "admin" %}
+            <li><a href="/add-item">Add Item</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+<!-- Hero Section -->
+
+<section style="text-align:center; padding:120px 20px;">
+
+    <h1 style="
+        font-size:70px;
+        color:orange;
+        margin-bottom:20px;">
+        Welcome to Smart Cafe ☕
+    </h1>
+
+    <p style="
+        font-size:24px;
+        color:white;
+        margin-bottom:30px;">
+        Fresh Coffee, Delicious Food, and Smart Ordering Experience
+    </p>
+
+    <a href="#menu">
+        <button style="
+            background:orange;
+            color:black;
+            border:none;
+            padding:15px 40px;
+            font-size:18px;
+            border-radius:10px;
+            cursor:pointer;">
+            Order Now
+        </button>
+    </a>
+
+</section>
+
+<!-- Menu Section -->
+    <!-- Menu Section -->
+
+<section  id="menu" class="menu">
+
+    <h2>Our Popular Items</h2>
+
+    <div class="menu-container">
+
+        {% for item in items %}
+
+        <div class="card">
+            <img src="{{ item.image }}"
+                 alt="{{ item.name}}"
+                 class="food-image">
+
+            <h3>{{ item.name }}</h3>
+
+            <p>{{ item.description }}</p>
+
+            <h4>₹{{ item.price }}</h4>
+
+
+<br><br>
+{% if session.get("role") == "admin" %}
+
+<a href="/delete-item/{{ item.id }}">
+    <button>Delete</button>
+</a>
+
+<a href="/edit-item/{{ item.id }}">
+    <button>Edit</button>
+</a>
+
+{% endif %}
+
+<a href="/add-to-cart/{{ item.id }}">
+    <button>Add to Cart</button>
+</a>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
+
+
+
+

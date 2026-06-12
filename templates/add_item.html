@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Item - Smart Cafe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="add-item-container">
+
+    <h1>➕ Add New Item</h1>
+
+    <form method="POST">
+
+        <input type="text"
+               name="name"
+               placeholder="Item Name"
+               required>
+
+        <input type="number"
+               name="price"
+               placeholder="Price"
+               required>
+
+        <input type="text"
+               name="image"
+               placeholder="Image URL"
+               required>
+
+        <textarea name="description"
+                  placeholder="Description"
+                  rows="4"
+                  required></textarea>
+
+        <button type="submit">
+            Add Item
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
