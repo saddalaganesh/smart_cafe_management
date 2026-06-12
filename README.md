@@ -133,7 +133,3 @@ Ganesh saddala
 Computer Science Engineering (Data Science)
 
 GitHub: https://github.com/saddalaganesh
-
-📄 License
-
-This project is created for educational and portfolio purposes.
